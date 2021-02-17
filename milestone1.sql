@@ -22,7 +22,11 @@ CREATE TABLE Review (
     vote_Fun INT,
     vote_Cool INT,
     vote_Useful INT,
-    PRIMARY KEY (reviewID)
+    BusinessID VARCHAR,
+    UserID VARCHAR,
+    PRIMARY KEY (reviewID),
+    FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (BusinessID) REFERENCES Business(BusinessID)
 );
 
 CREATE TABLE Business (
@@ -58,16 +62,6 @@ CREATE TABLE Search (
     FOREIGN KEY (BusinessID) REFERENCES Business(BusinessID)
 );
 
-CREATE TABLE GiveReview (
-    reviewID VARCHAR,
-    BusinessID VARCHAR,
-    UserID VARCHAR,
-    PRIMARY KEY (reviewID, UserID, BusinessID),
-    FOREIGN KEY (reviewID) REFERENCES Review(reviewID),
-    FOREIGN KEY (UserID) REFERENCES User(UserID),
-    FOREIGN KEY (BusinessID) REFERENCES Business(BusinessID)
-);
-
 CREATE TABLE CheckIn (
     BusinessID VARCHAR,
     UserID VARCHAR,
@@ -81,7 +75,7 @@ CREATE TABLE LikeReview (
     UserID VARCHAR,
     PRIMARY KEY (reviewID, UserID),
     FOREIGN KEY (reviewID) REFERENCES Review(reviewID),
-    FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
 );
 
 CREATE TABLE VoteReview (
@@ -89,5 +83,59 @@ CREATE TABLE VoteReview (
     UserID VARCHAR,
     PRIMARY KEY (reviewID, UserID),
     FOREIGN KEY (reviewID) REFERENCES Review(reviewID),
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
+);
+
+CREATE TABLE Has (
+    BusinessID VARCHAR,
+    categoryName VARCHAR,
+    PRIMARY KEY (BusinessID, categoryName),
+    FOREIGN KEY (BusinessID) REFERENCES Business (BusinessID),
+    FOREIGN KEY (categoryName) REFERENCES Category(categoryName)
+);
+
+CREATE TABLE Friend (
+    friendUserID VARCHAR,
+    friendName VARCHAR,
+    totalLikes INT,
+    stars FLOAT,
+    yelpSince DATETIME,
+    PRIMARY KEY (friendUserID)
+);
+
+CREATE TABLE isFriend (
+    UserID VARCHAR,
+    friendUserID VARCHAR,
+    PRIMARY KEY(UserID, friendUserID),
     FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (friendUserID) REFERENCES Friend(friendUserID)
+);
+
+CREATE TABLE latest (
+    friendUserID VARCHAR,
+    reviewID VARCHAR,
+    PRIMARY KEY (friendUserID, reviewID),
+    FOREIGN KEY (friendUserID) REFERENCES Friend(friendUserID),
+    FOREIGN KEY (reviewID) REFERENCES Review(reviewID)
+);
+
+CREATE TABLE Fan (
+    hasUserID VARCHAR,
+    becomeUserID VARCHAR,
+    PRIMARY KEY (hasUserID, becomeUserID),
+    FOREIGN KEY (hasUserID, becomeUserID) REFERENCES User(UserID)
+);
+
+CREATE TABLE VoteUser (
+    VoterID VARCHAR,
+    VoteeID VARCHAR,
+    PRIMARY KEY (VoterID, VoteeID),
+    FOREIGN KEY (VoterID, VoteeID) REFERENCES User(UserID)
+);
+
+CREATE TABLE Rate (
+    raterID VARCHAR,
+    getRatedID VARCHAR,
+    PRIMARY KEY (raterID, getRatedID),
+    FOREIGN KEY (raterID, getRatedID) REFERENCES User(UserID)
 );
