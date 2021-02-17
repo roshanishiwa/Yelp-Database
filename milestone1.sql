@@ -123,19 +123,22 @@ CREATE TABLE Fan (
     hasUserID VARCHAR,
     becomeUserID VARCHAR,
     PRIMARY KEY (hasUserID, becomeUserID),
-    FOREIGN KEY (hasUserID, becomeUserID) REFERENCES User(UserID)
+    FOREIGN KEY (hasUserID) REFERENCES User(UserID),
+    FOREIGN KEY (becomeUserID) REFERENCES User(UserID)
 );
 
 CREATE TABLE VoteUser (
     VoterID VARCHAR,
     VoteeID VARCHAR,
     PRIMARY KEY (VoterID, VoteeID),
-    FOREIGN KEY (VoterID, VoteeID) REFERENCES User(UserID)
+    FOREIGN KEY (VoterID) REFERENCES User(UserID),
+    FOREIGN KEY (VoteeID) REFERENCES User(UserID)
 );
 
 CREATE TABLE Rate (
     raterID VARCHAR,
     getRatedID VARCHAR,
     PRIMARY KEY (raterID, getRatedID),
-    FOREIGN KEY (raterID, getRatedID) REFERENCES User(UserID)
+    FOREIGN KEY (raterID) REFERENCES User(UserID)
+    FOREIGN KEY (getRatedID) REFERENCES User(UserID)
 );
