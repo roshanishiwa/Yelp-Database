@@ -38,6 +38,22 @@ namespace Milestone1
 
         }
 
+        public class Users
+        {
+            public string userID { get; set; }
+            public string username { get; set; }
+            public int fans { get; set; }
+            public float averageStars { get; set; }
+            public int tipCount { get; set; }
+            public int funny { get; set; }
+            public int cool { get; set; }
+            public int helpful { get; set; }
+            public string yelpSince { get; set; }
+            public int totalLikes { get; set; }
+            public float latitude { get; set; }
+            public float longitude { get; set; }
+
+        }
         public MainWindow()
         {
             InitializeComponent();
