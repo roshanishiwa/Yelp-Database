@@ -47,7 +47,7 @@ namespace Milestone1
 
         private string buildConnectionString()
         {
-            return "Host=localhost; Username=postgres; Database=yelpdb; password=heba1996";
+            return "Host=localhost; Username=postgres; Database=yelpdb; password=birth161998";
         }
 
         private void addState()
