@@ -24,7 +24,7 @@ def insert2BusinessTable():
 
         #connect to yelpdb database on postgres server using psycopg2
         try:
-            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='birth161998'")
+            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='Tigersrule5104'")
         except:
             print('Unable to connect to the database!')
         cur = conn.cursor()
@@ -60,7 +60,7 @@ def insert2HoursTable():
 
         #connect to yelpdb database on postgres server using psycopg2
         try:
-            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='birth161998'")
+            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='Tigersrule5104'")
         except:
             print('Unable to connect to the database!')
         cur = conn.cursor()
@@ -109,7 +109,7 @@ def insert2CategoryTable():
 
         #connect to yelpdb database on postgres server using psycopg2
         try:
-            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='birth161998'")
+            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='Tigersrule5104'")
         except:
             print('Unable to connect to the database!')
         cur = conn.cursor()
@@ -148,7 +148,7 @@ def insert2AttributesTable():
 
         #connect to yelpdb database on postgres server using psycopg2
         try:
-            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='birth161998'")
+            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='Tigersrule5104'")
         except:
             print('Unable to connect to the database!')
         cur = conn.cursor()
@@ -191,12 +191,12 @@ def parseAttribute(attributes, business_id, attributeData):
         # otherwise, we add to array
         else: 
             value = (attributes.get(key))
-            if value == "True":
-                boolValue = 1
-            else:
-                boolValue = 0
+            #if value == "True":
+                #boolValue = 1
+            #else:
+                #boolValue = 0
             sql_str = ("INSERT INTO Attributes (businessID, attributeName, value) " \
-                        "VALUES ('{0}', '{1}', {2});").format(cleanStr4SQL(business_id), cleanStr4SQL(key), [False,True][boolValue])
+                        "VALUES ('{0}', '{1}', {2});").format(cleanStr4SQL(business_id), cleanStr4SQL(key), cleanStr4SQL(str(value)))
             attributeData.append(sql_str)
     return attributeData
 
@@ -208,7 +208,7 @@ def insert2UserTable():
 
         #connect to yelpdb database on postgres server using psycopg2
         try:
-            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='birth161998'")
+            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='Tigersrule5104'")
         except:
             print('Unable to connect to the database!')
         cur = conn.cursor()
@@ -251,7 +251,7 @@ def insert2FriendsTable():
 
         #connect to yelpdb database on postgres server using psycopg2
         try:
-            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='birth161998'")
+            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='Tigersrule5104'")
         except:
             print('Unable to connect to the database!')
         cur = conn.cursor()
@@ -288,7 +288,7 @@ def insert2TipTable():
 
         #connect to yelpdb database on postgres server using psycopg2
         try:
-            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='birth161998'")
+            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='Tigersrule5104'")
         except:
             print('Unable to connect to the database!')
         cur = conn.cursor()
@@ -331,7 +331,7 @@ def insert2CheckinsTable():
 
         #connect to yelpdb database on postgres server using psycopg2
         try:
-            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='birth161998'")
+            conn = psycopg2.connect("dbname='yelpdb' user='postgres' host='localhost' password='Tigersrule5104'")
         except:
             print('Unable to connect to the database!')
         cur = conn.cursor()
@@ -378,11 +378,11 @@ def helpCheckin(date, business_id):
 
 
 
-#insert2UserTable()
-#insert2FriendsTable()
-#insert2BusinessTable()
+insert2UserTable()
+insert2FriendsTable()
+insert2BusinessTable()
 insert2TipTable()
-# insert2CategoryTable()
-# insert2AttributesTable()
-# insert2HoursTable()
-# insert2CheckinsTable()
+insert2CategoryTable()
+insert2AttributesTable()
+insert2HoursTable()
+insert2CheckinsTable()
