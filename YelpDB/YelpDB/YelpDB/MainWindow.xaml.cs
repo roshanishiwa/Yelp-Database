@@ -469,11 +469,19 @@ namespace YelpDB
             if (businessGrid.SelectedIndex > -1)
             {
 
-
+                string uid;
                 Business B = businessGrid.Items[businessGrid.SelectedIndex] as Business;
+                if (idBox.SelectedItem.ToString() != null)
+                {
+                    uid = idBox.SelectedItem.ToString();
+                }
+                else
+                {
+                    uid = "4XChL029mKr5hydo79Ljxg";
+                }
                 if ((B.bid != null) && (B.bid.ToString().CompareTo("") != 0))
                 {
-                    ShowTipsWindow1 wind = new ShowTipsWindow1(B.bid);
+                    ShowTipsWindow1 wind = new ShowTipsWindow1(B.bid, uid);
                     wind.Show();
 
                     //string TipText_1 = TipText.Text;

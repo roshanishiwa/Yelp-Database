@@ -21,6 +21,7 @@ namespace YelpDB
     {
 
         private string bid = "";
+        private string uid = "";
 
         public class Tip
         {
@@ -120,10 +121,11 @@ namespace YelpDB
         }
 
 
-        public ShowTipsWindow1(string bid)
+        public ShowTipsWindow1(string bid, string uid)
         {
             InitializeComponent();
             this.bid = String.Copy(bid);
+            this.uid = String.Copy(uid);
             loadBusinessTips();
             addColumns2Grid();
             addColumns2friendsGrid();
@@ -210,9 +212,9 @@ namespace YelpDB
 
                 + this.bid + "' " +
                 " AND t.userid in ( " +
-                " SELECT friendofid FROM friend WHERE friendforid = '4XChL029mKr5hydo79Ljxg' " +
+                " SELECT friendofid FROM friend WHERE friendforid = '" + this.uid +"' " +
                 " UNION " +
-                "SELECT friendforid FROM friend WHERE  friendofid= '4XChL029mKr5hydo79Ljxg' )" +
+                "SELECT friendforid FROM friend WHERE  friendofid= '" + this.uid + "' )" +
 
                 "ORDER By TipDate desc ";
             executeQuery(sqlStr1, setfriendsTips);
@@ -231,7 +233,7 @@ namespace YelpDB
         {
             string TipText_1 = usertip.Text;
             string sql_str = "INSERT INTO Tip (userID, businessID, tipDate, tipText, likes)" +
-             " VALUES ('4XChL029mKr5hydo79Ljxg', '" + this.bid + "' , NOW() , '" + TipText_1 + "', 0 )";
+             " VALUES ('" + this.uid + "', '" + this.bid + "' , NOW() , '" + TipText_1 + "', 0 )";
 
             executeQuery(sql_str, null);
 
