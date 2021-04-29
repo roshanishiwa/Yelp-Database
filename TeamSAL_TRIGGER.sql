@@ -57,11 +57,9 @@ CREATE OR REPLACE FUNCTION updateTotalLikes() RETURNS TRIGGER AS
 '
 BEGIN
     UPDATE Users
-    SET totalLikes = 
-    ( SELECT SUM(likes) AS likeCount
-    FROM Tip
-    WHERE Users.userID = Tip.userID);
-    RETURN NULL;
+    SET totalLikes = Users.totalLikes + 1
+    WHERE Users.userID = NEW.userID;
+    RETURN NEW;
 END
 '
 LANGUAGE plpgsql;
