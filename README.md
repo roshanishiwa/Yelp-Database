@@ -1,2 +1,2 @@
-# 451_Yelp
+# Yelp-Database
 Yelp Database Project
